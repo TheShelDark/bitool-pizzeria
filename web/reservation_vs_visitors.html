@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservierungen vs Besucher</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="average_demand.html">Pizza, Pasta, Salat</a></li>
+            <li><a href="reservation_vs_visitors.html">Reservierungen vs Besucher</a></li>
+            <li><a href="weekday_visitors.html">Besucher pro Wochentag</a></li>
+            <li><a href="drinks_demand.html">Getränkekonsum</a></li>
+        </ul>
+    </nav>
+
+    <h1>Reservierungen vs Besucheranzahl</h1>
+
+    <div class="chart-container">
+        <img id="reservation_vs_visitors" src="" alt="Reservation vs Visitors Chart">
+    </div>
+
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript">
+        eel.generate_charts()(function(charts) {
+            document.getElementById("reservation_vs_visitors").src = "data:image/png;base64," + charts.reservation_vs_visitors;
+        });
+    </script>
+
+    <footer>
+        <p>&copy; 2024 Bella Capri</p>
+    </footer>
+</body>
+</html>

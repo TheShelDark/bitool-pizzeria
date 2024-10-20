@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza, Pasta, Salat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="average_demand.html">Pizza, Pasta, Salat</a></li>
+            <li><a href="reservation_vs_visitors.html">Reservierungen vs Besucher</a></li>
+            <li><a href="weekday_visitors.html">Besucher pro Wochentag</a></li>
+            <li><a href="drinks_demand.html">Getränkekonsum</a></li>
+        </ul>
+    </nav>
+
+    <h1>Durchschnittlicher Bedarf an Pizza, Pasta und Salat</h1>
+
+    <div class="chart-container">
+        <img id="average_demand" src="" alt="Average Demand Chart">
+
+        <div class="card" id="average_demand_card">
+            <h2>Durchschnittswerte</h2>
+            <p><strong>Pizza:</strong> <span id="pizza_value">0</span></p>
+            <p><strong>Pasta:</strong> <span id="pasta_value">0</span></p>
+            <p><strong>Salat:</strong> <span id="salad_value">0</span></p>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript">
+        eel.generate_charts()(function(charts) {
+            document.getElementById("average_demand").src = "data:image/png;base64," + charts.average_demand;
+
+            eel.get_average_demand()(function(values) {
+                document.getElementById("pizza_value").textContent = values.Pizza.toFixed(2);
+                document.getElementById("pasta_value").textContent = values.Pasta.toFixed(2);
+                document.getElementById("salad_value").textContent = values.Salat.toFixed(2);
+            });
+        });
+    </script>
+
+    <footer>
+        <p>&copy; 2024 Bella Capri</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Besucher pro Wochentag</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="average_demand.html">Pizza, Pasta, Salat</a></li>
+            <li><a href="reservation_vs_visitors.html">Reservierungen vs Besucher</a></li>
+            <li><a href="weekday_visitors.html">Besucher pro Wochentag</a></li>
+            <li><a href="drinks_demand.html">Getränkekonsum</a></li>
+        </ul>
+    </nav>
+
+    <h1>Durchschnittliche Besucheranzahl pro Wochentag</h1>
+
+    <div class="chart-container">
+        <img id="weekday_visitors" src="" alt="Weekday Visitors Chart">
+
+        <div class="card" id="weekday_visitors_card">
+            <h2>Besucherzahlen</h2>
+            <p><strong>Montag:</strong> <span id="monday_visitors">0</span></p>
+            <p><strong>Dienstag:</strong> <span id="tuesday_visitors">0</span></p>
+            <p><strong>Mittwoch:</strong> <span id="wednesday_visitors">0</span></p>
+            <p><strong>Donnerstag:</strong> <span id="thursday_visitors">0</span></p>
+            <p><strong>Freitag:</strong> <span id="friday_visitors">0</span></p>
+            <p><strong>Samstag:</strong> <span id="saturday_visitors">0</span></p>
+            <p><strong>Sonntag:</strong> <span id="sunday_visitors">0</span></p>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript">
+        eel.generate_charts()(function(charts) {
+            document.getElementById("weekday_visitors").src = "data:image/png;base64," + charts.weekday_visitors;
+
+            eel.get_weekday_visitors()(function(values) {
+                document.getElementById("monday_visitors").textContent = values.Mo.toFixed(2);
+                document.getElementById("tuesday_visitors").textContent = values.Di.toFixed(2);
+                document.getElementById("wednesday_visitors").textContent = values.Mi.toFixed(2);
+                document.getElementById("thursday_visitors").textContent = values.Do.toFixed(2);
+                document.getElementById("friday_visitors").textContent = values.Fr.toFixed(2);
+                document.getElementById("saturday_visitors").textContent = values.Sa.toFixed(2);
+                document.getElementById("sunday_visitors").textContent = values.So.toFixed(2);
+            });
+        });
+    </script>
+
+    <footer>
+        <p>&copy; 2024 Bella Capri</p>
+    </footer>
+</body>
+</html>

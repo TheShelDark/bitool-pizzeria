@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getränkekonsum</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="average_demand.html">Pizza, Pasta, Salat</a></li>
+            <li><a href="reservation_vs_visitors.html">Reservierungen vs Besucher</a></li>
+            <li><a href="weekday_visitors.html">Besucher pro Wochentag</a></li>
+            <li><a href="drinks_demand.html">Getränkekonsum</a></li>
+        </ul>
+    </nav>
+
+    <h1>Durchschnittlicher Getränkekonsum pro Tag</h1>
+
+    <div class="chart-container">
+        <img id="drinks_demand" src="" alt="Drinks Demand Chart">
+
+        <div class="card" id="drinks_demand_card">
+            <h2>Getränkekonsum</h2>
+            <p><strong>Mineralwasser:</strong> <span id="water_value">0</span></p>
+            <p><strong>Apfelschorle:</strong> <span id="apfelschorle_value">0</span></p>
+            <p><strong>Cola:</strong> <span id="cola_value">0</span></p>
+            <p><strong>Bier:</strong> <span id="beer_value">0</span></p>
+            <p><strong>Wein:</strong> <span id="wine_value">0</span></p>
+            <p><strong>Sonstiges:</strong> <span id="other_value">0</span></p>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript">
+        eel.generate_charts()(function(charts) {
+            document.getElementById("drinks_demand").src = "data:image/png;base64," + charts.drinks_demand;
+
+            eel.get_drinks_demand()(function(values) {
+                document.getElementById("water_value").textContent = values.Mineralwasser.toFixed(2);
+                document.getElementById("apfelschorle_value").textContent = values.Apfelschorle.toFixed(2);
+                document.getElementById("cola_value").textContent = values.Cola.toFixed(2);
+                document.getElementById("beer_value").textContent = values.Bier.toFixed(2);
+                document.getElementById("wine_value").textContent = values.Wein.toFixed(2);
+                document.getElementById("other_value").textContent = values.Sonstiges.toFixed(2);
+            });
+        });
+    </script>
+
+    <footer>
+        <p>&copy; 2024 Bella Capri</p>
+    </footer>
+</body>
+</html>
